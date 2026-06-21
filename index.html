@@ -6,7 +6,7 @@
     <title>موقع خدماتنا | Gridflow</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* إعدادات عامة للتصميم */
+        /* إعدادات عامة للتصميم - الوضع الليلي */
         * {
             margin: 0;
             padding: 0;
@@ -16,19 +16,19 @@
 
         body {
             line-height: 1.6;
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: #121212; /* خلفية داكنة */
+            color: #e0e0e0; /* نص فاتح */
         }
 
         a {
             text-decoration: none;
-            color: #333;
+            color: #e0e0e0;
         }
 
         /* شريط التنقل العلوي */
         header {
-            background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -38,15 +38,25 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
+            padding: 15px 50px;
             max-width: 1200px;
             margin: auto;
         }
 
-        .logo {
+        /* تنسيق اللوقو */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 24px;
             font-weight: bold;
-            color: #6c5ce7;
+            color: #bb86fc; /* لون مميز للوضع الليلي */
+        }
+
+        .logo-container img {
+            max-height: 40px; /* حجم الشعار */
+            width: auto;
+            border-radius: 5px;
         }
 
         .nav-links {
@@ -61,20 +71,22 @@
         }
 
         .nav-links li a:hover {
-            color: #6c5ce7;
+            color: #bb86fc;
         }
 
         /* القسم الرئيسي (البداية) */
         .hero {
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-            color: white;
+            background: linear-gradient(135deg, #2b1b4d, #121212);
+            color: #ffffff;
             text-align: center;
             padding: 100px 20px;
+            border-bottom: 1px solid #333;
         }
 
         .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
+            color: #bb86fc;
         }
 
         .hero p {
@@ -83,21 +95,23 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            color: #cccccc;
         }
 
         .btn {
-            background-color: #ffffff;
-            color: #6c5ce7;
+            background-color: #bb86fc;
+            color: #121212;
             padding: 12px 30px;
             border-radius: 25px;
             font-size: 18px;
             font-weight: bold;
-            transition: background 0.3s, color 0.3s;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-block;
         }
 
         .btn:hover {
-            background-color: #333;
-            color: #ffffff;
+            background-color: #9965f4;
+            transform: scale(1.05);
         }
 
         /* الأقسام العامة */
@@ -111,7 +125,7 @@
         section h2 {
             font-size: 36px;
             margin-bottom: 40px;
-            color: #2d3436;
+            color: #ffffff;
         }
 
         /* قسم الخدمات */
@@ -123,21 +137,28 @@
         }
 
         .service-card {
-            background: #ffffff;
+            background: #1e1e1e;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             width: 300px;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #333;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(187, 134, 252, 0.2);
+            border-color: #bb86fc;
         }
 
         .service-card h3 {
-            color: #6c5ce7;
+            color: #bb86fc;
             margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #b3b3b3;
         }
 
         /* قسم التواصل */
@@ -145,17 +166,29 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: #ffffff;
+            background: #1e1e1e;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             max-width: 600px;
             margin: auto;
+            border: 1px solid #333;
         }
 
         .contact-info {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-size: 18px;
+            color: #cccccc;
+            text-align: right;
+            width: 100%;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info strong {
+            color: #bb86fc;
         }
 
         .contact-form {
@@ -168,33 +201,42 @@
         .contact-form input, .contact-form textarea {
             width: 100%;
             padding: 15px;
-            border: 1px solid #ddd;
+            background-color: #2d2d2d;
+            border: 1px solid #444;
+            color: #ffffff;
             border-radius: 5px;
             font-size: 16px;
         }
 
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: #bb86fc;
+        }
+
         .contact-form button {
-            background-color: #6c5ce7;
-            color: #fff;
+            background-color: #bb86fc;
+            color: #121212;
             border: none;
             padding: 15px;
             font-size: 18px;
+            font-weight: bold;
             border-radius: 5px;
             cursor: pointer;
             transition: 0.3s;
         }
 
         .contact-form button:hover {
-            background-color: #5b4bc4;
+            background-color: #9965f4;
         }
 
         /* الفوتر */
         footer {
-            background-color: #2d3436;
-            color: white;
+            background-color: #0a0a0a;
+            color: #888;
             text-align: center;
             padding: 20px;
             margin-top: 40px;
+            border-top: 1px solid #222;
         }
 
         /* التجاوب مع الجوال */
@@ -214,7 +256,12 @@
     <!-- شريط التنقل -->
     <header>
         <nav class="navbar">
-            <div class="logo">موقعي | Gridflow</div>
+            <!-- مساحة اللوقو (قم برفع صورة باسم logo.png في نفس المجلد لكي تظهر هنا) -->
+            <div class="logo-container">
+                <img src="logo.png" alt="شعار Gridflow" onerror="this.style.display='none'">
+                <span>Gridflow</span>
+            </div>
+            
             <ul class="nav-links">
                 <li><a href="#home">الرئيسية</a></li>
                 <li><a href="#about">من نحن</a></li>
@@ -226,15 +273,15 @@
 
     <!-- القسم الرئيسي -->
     <section id="home" class="hero">
-        <h1>مرحباً بك في موقعنا الرسمي</h1>
-        <p>نحن هنا لنقدم لك أفضل الحلول والخدمات الرقمية التي تساعدك على تطوير أعمالك والوصول إلى أهدافك بكل احترافية.</p>
+        <h1>مرحباً بك في Gridflow</h1>
+        <p>نقدم لك أفضل الحلول الرقمية المبتكرة لتطوير أعمالك والوصول إلى أهدافك بكل احترافية، الآن بتجربة الوضع الليلي.</p>
         <a href="#services" class="btn">اكتشف خدماتنا</a>
     </section>
 
     <!-- قسم من نحن -->
     <section id="about">
         <h2>من نحن</h2>
-        <p style="max-width: 800px; margin: auto; font-size: 18px;">
+        <p style="max-width: 800px; margin: auto; font-size: 18px; color: #cccccc;">
             نحن فريق شغوف بالتكنولوجيا والتطوير، نسعى لتقديم أعلى مستويات الجودة في خدماتنا. نؤمن بأن النجاح يبدأ من فهم احتياجات العميل وتقديم حلول مبتكرة تناسب تطلعاته.
         </p>
     </section>
@@ -248,8 +295,8 @@
                 <p>نصمم لك مواقع عصرية ومتجاوبة مع جميع الأجهزة لضمان أفضل تجربة للمستخدم ولإبراز هويتك الرقمية.</p>
             </div>
             <div class="service-card">
-                <h3>التسويق الرقمي</h3>
-                <p>نساعدك في الوصول إلى جمهورك المستهدف من خلال استراتيجيات تسويق فعالة على مختلف المنصات.</p>
+                <h3>الاستضافة والدومين</h3>
+                <p>نوفر لك مساحات استضافة آمنة وسريعة مع ربط النطاقات الاحترافية مثل gridflow.com لضمان استقرار موقعك.</p>
             </div>
             <div class="service-card">
                 <h3>الدعم الفني</h3>
@@ -263,9 +310,10 @@
         <h2>تواصل معنا</h2>
         <div class="contact-container">
             <div class="contact-info">
-                <p>📍 <strong>العنوان:</strong> المملكة العربية السعودية، الرياض</p>
+                <!-- تم دمج معلومات موقعك هنا -->
+                <p>🌐 <strong>الموقع الرسمي:</strong> www.gridflow.com</p>
                 <p>📧 <strong>البريد الإلكتروني:</strong> info@gridflow.com</p>
-                <p>📞 <strong>رقم الهاتف:</strong> 966500000000+</p>
+                <p>📞 <strong>رقم الهاتف:</strong> 966500000000+ (قم بتعديله من الكود)</p>
             </div>
             
             <form class="contact-form" action="#" method="POST">
