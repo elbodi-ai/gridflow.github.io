@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع خدماتنا | Gridflow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>Gridflow | موقع عصري متقدم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* إعدادات عامة للتصميم - الوضع الليلي */
+        /* إعدادات عامة وتمرير سلس */
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,8 +20,9 @@
 
         body {
             line-height: 1.6;
-            background-color: #121212; /* خلفية داكنة */
-            color: #e0e0e0; /* نص فاتح */
+            background-color: #0f0f13; /* لون داكن عصري */
+            color: #e0e0e0;
+            overflow-x: hidden;
         }
 
         a {
@@ -25,13 +30,16 @@
             color: #e0e0e0;
         }
 
-        /* شريط التنقل العلوي */
+        /* شريط التنقل - تأثير الزجاج (Glassmorphism) */
         header {
-            background-color: #1e1e1e;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            background: rgba(15, 15, 19, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .navbar {
@@ -43,90 +51,166 @@
             margin: auto;
         }
 
-        /* تنسيق اللوقو */
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #bb86fc; /* لون مميز للوضع الليلي */
+            gap: 12px;
+            font-size: 26px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #bb86fc, #7c4dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .logo-container img {
-            max-height: 40px; /* حجم الشعار */
-            width: auto;
-            border-radius: 5px;
+            max-height: 40px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         .nav-links li a {
             font-size: 16px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 5px;
             transition: color 0.3s;
+        }
+
+        /* تأثير خط سفلي متحرك للروابط */
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            right: 0;
+            background-color: #bb86fc;
+            transition: width 0.3s ease;
         }
 
         .nav-links li a:hover {
             color: #bb86fc;
         }
 
-        /* القسم الرئيسي (البداية) */
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        /* القسم الرئيسي - مع تأثير حركة مستمر (Floating) */
         .hero {
-            background: linear-gradient(135deg, #2b1b4d, #121212);
-            color: #ffffff;
+            position: relative;
+            background: radial-gradient(circle at center, #2b1b4d 0%, #0f0f13 70%);
             text-align: center;
-            padding: 100px 20px;
-            border-bottom: 1px solid #333;
+            padding: 150px 20px;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* حركة طفو ناعمة للعناصر */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-content {
+            animation: float 6s ease-in-out infinite;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 56px;
+            font-weight: 900;
             margin-bottom: 20px;
-            color: #bb86fc;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(187, 134, 252, 0.4);
         }
 
         .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            color: #cccccc;
+            font-size: 22px;
+            margin-bottom: 40px;
+            max-width: 650px;
+            color: #b0b0b0;
         }
 
+        /* زر عصري مع توهج */
         .btn {
-            background-color: #bb86fc;
-            color: #121212;
-            padding: 12px 30px;
-            border-radius: 25px;
+            background: linear-gradient(45deg, #bb86fc, #7c4dff);
+            color: #ffffff;
+            padding: 15px 40px;
+            border-radius: 30px;
             font-size: 18px;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(124, 77, 255, 0.4);
+            transition: all 0.3s ease;
             display: inline-block;
         }
 
         .btn:hover {
-            background-color: #9965f4;
-            transform: scale(1.05);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(187, 134, 252, 0.6);
+            color: #fff;
         }
 
         /* الأقسام العامة */
         section {
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
             max-width: 1200px;
             margin: auto;
         }
 
         section h2 {
-            font-size: 36px;
-            margin-bottom: 40px;
+            font-size: 40px;
+            margin-bottom: 50px;
             color: #ffffff;
+            position: relative;
+            display: inline-block;
         }
+
+        section h2::after {
+            content: '';
+            width: 50%;
+            height: 3px;
+            background: #bb86fc;
+            position: absolute;
+            bottom: -10px;
+            right: 25%;
+            border-radius: 5px;
+        }
+
+        /* الكلاسات الخاصة بالحركة عند التمرير (Scroll Animations) */
+        .hidden {
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .show {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        /* تأخير حركة البطاقات لعمل تأثير تتابعي */
+        .service-card:nth-child(1) { transition-delay: 0.1s; }
+        .service-card:nth-child(2) { transition-delay: 0.3s; }
+        .service-card:nth-child(3) { transition-delay: 0.5s; }
 
         /* قسم الخدمات */
         .services-container {
@@ -137,28 +221,46 @@
         }
 
         .service-card {
-            background: #1e1e1e;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            width: 300px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #333;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            width: 320px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* تأثير إضاءة عند التمرير على البطاقة */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(187,134,252,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(187, 134, 252, 0.2);
-            border-color: #bb86fc;
+            transform: translateY(-15px);
+            border-color: rgba(187, 134, 252, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(187, 134, 252, 0.1);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
         }
 
         .service-card h3 {
             color: #bb86fc;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 24px;
         }
 
         .service-card p {
-            color: #b3b3b3;
+            color: #a0a0a0;
+            font-size: 16px;
         }
 
         /* قسم التواصل */
@@ -166,25 +268,31 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: #1e1e1e;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            max-width: 600px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 700px;
             margin: auto;
-            border: 1px solid #333;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .contact-info {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             font-size: 18px;
             color: #cccccc;
             text-align: right;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .contact-info p {
-            margin-bottom: 10px;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border-right: 4px solid #bb86fc;
         }
 
         .contact-info strong {
@@ -195,48 +303,53 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-            gap: 15px;
+            gap: 20px;
         }
 
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 15px;
-            background-color: #2d2d2d;
-            border: 1px solid #444;
+            padding: 18px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: #ffffff;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 16px;
+            transition: all 0.3s ease;
         }
 
         .contact-form input:focus, .contact-form textarea:focus {
             outline: none;
             border-color: #bb86fc;
+            background-color: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 15px rgba(187, 134, 252, 0.2);
         }
 
         .contact-form button {
-            background-color: #bb86fc;
-            color: #121212;
+            background: linear-gradient(45deg, #bb86fc, #7c4dff);
+            color: #ffffff;
             border: none;
-            padding: 15px;
+            padding: 18px;
             font-size: 18px;
-            font-weight: bold;
-            border-radius: 5px;
+            font-weight: 900;
+            border-radius: 10px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
         .contact-form button:hover {
-            background-color: #9965f4;
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(124, 77, 255, 0.5);
         }
 
         /* الفوتر */
         footer {
-            background-color: #0a0a0a;
-            color: #888;
+            background-color: #050505;
+            color: #666;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            border-top: 1px solid #222;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid #1a1a1a;
+            font-size: 14px;
         }
 
         /* التجاوب مع الجوال */
@@ -246,7 +359,10 @@
                 gap: 15px;
             }
             .hero h1 {
-                font-size: 32px;
+                font-size: 38px;
+            }
+            .hero p {
+                font-size: 18px;
             }
         }
     </style>
@@ -256,7 +372,6 @@
     <!-- شريط التنقل -->
     <header>
         <nav class="navbar">
-            <!-- مساحة اللوقو (قم برفع صورة باسم logo.png في نفس المجلد لكي تظهر هنا) -->
             <div class="logo-container">
                 <img src="logo.png" alt="شعار Gridflow" onerror="this.style.display='none'">
                 <span>Gridflow</span>
@@ -273,53 +388,54 @@
 
     <!-- القسم الرئيسي -->
     <section id="home" class="hero">
-        <h1>مرحباً بك في Gridflow</h1>
-        <p>نقدم لك أفضل الحلول الرقمية المبتكرة لتطوير أعمالك والوصول إلى أهدافك بكل احترافية، الآن بتجربة الوضع الليلي.</p>
-        <a href="#services" class="btn">اكتشف خدماتنا</a>
+        <div class="hero-content hidden">
+            <h1>مرحباً بك في Gridflow</h1>
+            <p>حلول رقمية مبتكرة وتصاميم عصرية تأخذ أعمالك إلى المستوى التالي. ندمج الفن مع التكنولوجيا لبناء هويتك الرقمية.</p>
+            <a href="#services" class="btn">اكتشف خدماتنا</a>
+        </div>
     </section>
 
     <!-- قسم من نحن -->
-    <section id="about">
+    <section id="about" class="hidden">
         <h2>من نحن</h2>
-        <p style="max-width: 800px; margin: auto; font-size: 18px; color: #cccccc;">
-            نحن فريق شغوف بالتكنولوجيا والتطوير، نسعى لتقديم أعلى مستويات الجودة في خدماتنا. نؤمن بأن النجاح يبدأ من فهم احتياجات العميل وتقديم حلول مبتكرة تناسب تطلعاته.
+        <p style="max-width: 800px; margin: auto; font-size: 20px; color: #b0b0b0; line-height: 1.8;">
+            نحن فريق من المبدعين والمطورين، نؤمن بأن التصميم الجيد ليس مجرد شكل، بل هو تجربة مستخدم متكاملة. نسعى جاهدين لتحويل أفكارك إلى منصات رقمية حية ومؤثرة تفوق توقعاتك.
         </p>
     </section>
 
     <!-- قسم الخدمات -->
     <section id="services">
-        <h2>خدماتنا المميزة</h2>
+        <h2 class="hidden">خدماتنا المميزة</h2>
         <div class="services-container">
-            <div class="service-card">
+            <div class="service-card hidden">
                 <h3>تصميم المواقع</h3>
-                <p>نصمم لك مواقع عصرية ومتجاوبة مع جميع الأجهزة لضمان أفضل تجربة للمستخدم ولإبراز هويتك الرقمية.</p>
+                <p>نصمم لك مواقع عصرية تفاعلية ومتجاوبة بالكامل لضمان أفضل تجربة للمستخدم ولإبراز هويتك الرقمية بشكل يخطف الأنظار.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card hidden">
                 <h3>الاستضافة والدومين</h3>
-                <p>نوفر لك مساحات استضافة آمنة وسريعة مع ربط النطاقات الاحترافية مثل gridflow.com لضمان استقرار موقعك.</p>
+                <p>نوفر لك مساحات استضافة آمنة وسريعة مع ربط النطاقات الاحترافية مثل gridflow.com لضمان استقرار موقعك وأدائه العالي.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card hidden">
                 <h3>الدعم الفني</h3>
-                <p>فريقنا متواجد دائماً لتقديم الدعم الفني وحل أي مشكلات تواجهك لضمان استمرارية عملك بدون توقف.</p>
+                <p>فريقنا متواجد دائماً لتقديم الدعم الفني المستمر وحل أي مشكلات تواجهك لضمان استمرارية عملك بكفاءة وبدون أي توقف.</p>
             </div>
         </div>
     </section>
 
     <!-- قسم التواصل -->
-    <section id="contact">
-        <h2>تواصل معنا</h2>
+    <section id="contact" class="hidden">
+        <h2>دعنا نتحدث</h2>
         <div class="contact-container">
             <div class="contact-info">
-                <!-- تم دمج معلومات موقعك هنا -->
                 <p>🌐 <strong>الموقع الرسمي:</strong> www.gridflow.com</p>
                 <p>📧 <strong>البريد الإلكتروني:</strong> info@gridflow.com</p>
-                <p>📞 <strong>رقم الهاتف:</strong> 966500000000+ (قم بتعديله من الكود)</p>
+                <p>📞 <strong>رقم الهاتف:</strong> 966500000000+</p>
             </div>
             
             <form class="contact-form" action="#" method="POST">
                 <input type="text" placeholder="الاسم الكريم" required>
                 <input type="email" placeholder="البريد الإلكتروني" required>
-                <textarea rows="5" placeholder="رسالتك أو استفسارك..." required></textarea>
+                <textarea rows="5" placeholder="كيف يمكننا مساعدتك اليوم؟" required></textarea>
                 <button type="submit">إرسال الرسالة</button>
             </form>
         </div>
@@ -327,8 +443,28 @@
 
     <!-- تذييل الموقع -->
     <footer>
-        <p>&copy; 2026 جميع الحقوق محفوظة لموقع Gridflow.</p>
+        <p>&copy; 2026 جميع الحقوق محفوظة لموقع Gridflow. تم التطوير بشغف.</p>
     </footer>
 
+    <!-- سكريبت تشغيل الحركات عند التمرير -->
+    <script>
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 // العنصر يظهر لما 15% منه يدخل الشاشة
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target); // إيقاف المراقبة بعد الظهور لتحسين الأداء
+                }
+            });
+        }, observerOptions);
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
 </body>
 </html>
